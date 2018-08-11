@@ -6,8 +6,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
+    public float accelerationTime = 0.1f;
 
     private PlayerMotor motor;
+    private Vector2 velocity;
+    private Vector2 input;
+
+    private float velocityXSmoothing;
+    private float velocityYSmoothing;
 
     private void Start()
     {
@@ -16,12 +22,23 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        UpdateInputDirection();
         Move();
     }
 
     private void Move()
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        motor.Move(input * speed * Time.deltaTime);
+        float targetVelocityX = input.x * speed;
+        float targetVelocityY = input.y * speed;
+
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTime);
+        velocity.y = Mathf.SmoothDamp(velocity.y, targetVelocityY, ref velocityYSmoothing, accelerationTime);
+
+        motor.Move(velocity * Time.deltaTime);
+    }
+
+    private void UpdateInputDirection()
+    {
+        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 }

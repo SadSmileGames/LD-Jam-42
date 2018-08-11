@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  accelerationTime: 0.075
 --- !u!114 &133752343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,10 +206,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0cac706e90d7d74ca5e1879998d7d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinWidth: 0.05
+  distanceBentweenRays: 0.1
   collisionMask:
     serializedVersion: 2
     m_Bits: 256
-  rayCount: {x: 4, y: 4}
 --- !u!1 &470801225
 GameObject:
   m_ObjectHideFlags: 0

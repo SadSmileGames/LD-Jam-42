@@ -14,8 +14,6 @@ public class PlayerMotor : MonoBehaviour
 
     public void Move(Vector2 velocity)
     {
-        collision.UpdateRaycastOrigins();
-
         collision.CheckHorizontalCollisions(ref velocity);
         collision.CheckVerticalCollisions(ref velocity);
 
