@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &432746590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1887593783164622, guid: 2a21748f70941134eade6e311c80f2a1,
+    type: 2}
+  m_PrefabInternal: {fileID: 2039807094}
 --- !u!1 &470801225
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +264,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2.32
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -696,11 +701,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4399085221811176, guid: 2a21748f70941134eade6e311c80f2a1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.509
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4399085221811176, guid: 2a21748f70941134eade6e311c80f2a1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.48
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4399085221811176, guid: 2a21748f70941134eade6e311c80f2a1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -767,6 +772,46 @@ Prefab:
     - target: {fileID: 212548892864564836, guid: 2a21748f70941134eade6e311c80f2a1,
         type: 2}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399085221811176, guid: 2a21748f70941134eade6e311c80f2a1, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114310366327923244, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: graphics
+      value: 
+      objectReference: {fileID: 432746590}
+    - target: {fileID: 114310366327923244, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: dashDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114310366327923244, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: moveAccelerationTime
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 212548892864564836, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 894b5635e8f5aa341a11eadf3caf608b,
+        type: 3}
+    - target: {fileID: 212548892864564836, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212548892864564836, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212548892864564836, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
