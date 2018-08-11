@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 114310366327923244}
   - component: {fileID: 114558075196120702}
   - component: {fileID: 114396687342613996}
+  - component: {fileID: 114367371305023210}
+  - component: {fileID: 114380478983249620}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -69,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646660702878174}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.14627266, y: 0.29672834, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4455645234108764}
@@ -137,7 +139,7 @@ Animator:
   m_GameObject: {fileID: 1646660702878174}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a7f0d640ae664cb41aa27d6fab4d2b52, type: 2}
+  m_Controller: {fileID: 9100000, guid: 68622ae5cc0007b49b025ce2c1cad8ad, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -158,10 +160,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  moveAccelerationTime: 0.1
-  dashDistance: 1.5
+  moveAccelerationTime: 0.05
+  dashDistance: 2.5
   dashTime: 0.15
   dashCoolDown: 1
+  Dashing:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114380478983249620}
+        m_MethodName: StartSpinning
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  isDashing: 0
+--- !u!114 &114367371305023210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426676532101922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2272e8a355ce7b04b980a160a86307cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114380478983249620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426676532101922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c998d4f3b1c12143a7107582f5b82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphics: {fileID: 1646660702878174}
 --- !u!114 &114396687342613996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,12 +266,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300048, guid: 894b5635e8f5aa341a11eadf3caf608b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 894b5635e8f5aa341a11eadf3caf608b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

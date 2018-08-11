@@ -19,25 +19,4 @@ public class PlayerMotor : MonoBehaviour
 
         transform.Translate(velocity);
     }
-
-    public void Rotate(Transform target, int times, float duration)
-    {
-        StartCoroutine(Spin(target, times, duration));
-    }
-
-    private IEnumerator Spin(Transform target, int times, float duration)
-    {
-        Vector3 startRotation = target.eulerAngles;
-        float targetRotation = startRotation.z + (360.0f * times);
-        float t = 0.0f;
-
-        while (t < duration)
-        {
-            t += Time.deltaTime;
-            float zRotation = Mathf.Lerp(startRotation.z, targetRotation, t / duration) % (360.0f * times);
-            target.eulerAngles = new Vector3(startRotation.x, startRotation.y, -zRotation);
-
-            yield return null;
-        }
-    }
 }

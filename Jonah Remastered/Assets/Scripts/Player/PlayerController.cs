@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof (PlayerMotor))]
 public class PlayerController : MonoBehaviour
 {
-    public GameObject graphics;
-
     public float speed = 5f;
     public float moveAccelerationTime = 0.1f;
 
@@ -14,7 +12,10 @@ public class PlayerController : MonoBehaviour
     public float dashTime = 0.2f;
     public float dashCoolDown = 1f;
 
-    private bool isDashing = false;
+    public UnityEngine.Events.UnityEvent Dashing;
+
+    [HideInInspector]
+    public bool isDashing = false;
     private float dashDuration;
     private float dashCoolDownTimer;
 
@@ -68,19 +69,24 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 dashDirection = input;
         float dashVelocity = dashDistance / dashTime;
-        
-       
-        velocity = input * dashVelocity;
         isDashing = true;
+        Dashing.Invoke();
+
+        velocity = input * dashVelocity;
         dashDuration = dashTime;
         dashCoolDownTimer = dashCoolDown;
-
-        if(graphics != null)
-            motor.Rotate(graphics.transform, 1, dashTime);
     }
 
     private void UpdateInputDirection()
     {
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+    }
+
+    public bool IsMoving()
+    {
+        if (Mathf.Abs(velocity.x) > 0.2f || Mathf.Abs(velocity.y) > 0.2f)
+            return true;
+        else
+            return false;
     }
 }
