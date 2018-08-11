@@ -19,4 +19,9 @@ public class PlayerMotor : MonoBehaviour
 
         transform.Translate(velocity);
     }
+
+    public void Dash(Vector3 targetPos)
+    {
+        transform.position = Vector3.Lerp(transform.position, targetPos, 1f);
+    }
 }
