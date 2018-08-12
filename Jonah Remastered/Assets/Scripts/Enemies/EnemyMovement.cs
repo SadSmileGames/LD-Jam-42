@@ -6,15 +6,18 @@ public class EnemyMovement : MonoBehaviour
 {
     public Transform target;
     public float speed = 5f;
+    public float stoppingDistance = 1f;
 
     private Vector2[] path;
     private int targetIndex;
 
     private bool isFollowing;
+    private float distance;
 
     private void Update()
     {
-        if(isFollowing == false)
+        distance = Vector3.Distance(transform.position, target.position);
+        if (isFollowing == false && distance > stoppingDistance)
         {
             PathRequestManager.RequestPath(TransformConversion.Convert2Vector2(transform.position),
                                        TransformConversion.Convert2Vector2(target.position),
@@ -27,8 +30,13 @@ public class EnemyMovement : MonoBehaviour
         if(success)
         {
             this.path = path;
-            StopCoroutine("FollowPath");
-            StartCoroutine("FollowPath");
+            targetIndex = 0;
+            
+            if (distance > stoppingDistance)
+            {
+                StopCoroutine("FollowPath");
+                StartCoroutine("FollowPath");
+            }
         }
     }
 
@@ -43,7 +51,7 @@ public class EnemyMovement : MonoBehaviour
         Vector2 currentWaypoint = path[0];
         isFollowing = true;
 
-        while (true)
+        while (isFollowing)
         {
             if(TransformConversion.Convert2Vector2(transform.position) == currentWaypoint)
             {
@@ -57,7 +65,17 @@ public class EnemyMovement : MonoBehaviour
                 currentWaypoint = path[targetIndex];
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, TransformConversion.Convert2Vector3(currentWaypoint), speed * Time.deltaTime);
+            Vector3 targetPos = TransformConversion.Convert2Vector3(currentWaypoint);
+
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+
+            if(distance < stoppingDistance)
+            {
+                isFollowing = false;
+                yield break;
+            }
+                
+
             yield return null;
         }
     }

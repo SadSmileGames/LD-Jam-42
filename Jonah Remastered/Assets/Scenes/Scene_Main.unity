@@ -764,6 +764,10 @@ Prefab:
       propertyPath: m_Size.x
       value: 0.64
       objectReference: {fileID: 0}
+    - target: {fileID: 1042091777411488, guid: 5f14f51bf11dad44284f589183a24791, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f14f51bf11dad44284f589183a24791, type: 2}
   m_IsPrefabAsset: 0
@@ -785,6 +789,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1811524821}
   speed: 5
+  stoppingDistance: 2
+--- !u!114 &1265237232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1265237229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81b4246a9e847648923b63695297449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  deathEffect: {fileID: 1943395375951550, guid: 06b2cce06ddf83c4faf33e055fd23f70,
+    type: 2}
+  currentHealth: 0
 --- !u!1 &1300094127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,9 +1042,9 @@ MonoBehaviour:
   player: {fileID: 1811524821}
   unwalkableMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 256
   gridWorldSize: {x: 15, y: 10}
-  nodeRadius: 0.5
+  nodeRadius: 0.6
 --- !u!4 &1370912653
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,6 +1437,16 @@ Prefab:
         type: 2}
       propertyPath: collisionMask.m_Bits
       value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 61188524016740358, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 61188524016740358, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.58
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a21748f70941134eade6e311c80f2a1, type: 2}

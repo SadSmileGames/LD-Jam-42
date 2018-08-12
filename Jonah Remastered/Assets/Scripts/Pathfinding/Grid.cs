@@ -56,7 +56,7 @@ public class Grid : MonoBehaviour
             {
                 Vector2 worldPoint = bottomLeft + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.up * (y * nodeDiameter + nodeRadius);
                 RaycastHit2D[] hits;
-                hits = Physics2D.CircleCastAll(worldPoint, nodeRadius - 0.05f, Vector2.zero, 0, unwalkableMask);
+                hits = Physics2D.CircleCastAll(worldPoint, nodeRadius, Vector2.zero, 0, unwalkableMask);
 
                 foreach (RaycastHit2D hit in hits)
                 {
