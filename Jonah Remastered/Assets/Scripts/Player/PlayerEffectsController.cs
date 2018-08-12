@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerEffectsController : MonoBehaviour
 {
+    public delegate void OnDirectionChangedDelegate(int dir);
+    public static OnDirectionChangedDelegate OnDirectionChangedEvent;
+
     public GameObject graphics;
 
     private MouseLook mouseLook;
@@ -34,25 +37,35 @@ public class PlayerEffectsController : MonoBehaviour
         {
             ResetDirection();
             animator.SetBool("facingRight", true);
+            callOnDirectionChangedEvent(2);
         }
 
         if (angle >= 45 && angle <= 135)
         {
             ResetDirection();
             animator.SetBool("facingUp", true);
+            callOnDirectionChangedEvent(1);
         }
 
         if (angle > 135 || angle < -135)
         {
             ResetDirection();
             animator.SetBool("facingLeft", true);
+            callOnDirectionChangedEvent(4);
         }
 
         if (angle <= -45 && angle >= -135)
         {
             ResetDirection();
             animator.SetBool("facingDown", true);
+            callOnDirectionChangedEvent(3);
         }
+    }
+
+    private void callOnDirectionChangedEvent(int dir)
+    {
+        if (OnDirectionChangedEvent != null)
+            OnDirectionChangedEvent(dir);
     }
 
     private void ResetDirection()
@@ -77,7 +90,7 @@ public class PlayerEffectsController : MonoBehaviour
 
     public void StartSpinning()
     {
-        StartCoroutine(Spin(graphics.transform, 1, controller.dashTime));
+        StartCoroutine(Spin(graphics.transform, 1, controller.dashTime * 2));
     }
 
     private IEnumerator Spin(Transform target, int times, float duration)

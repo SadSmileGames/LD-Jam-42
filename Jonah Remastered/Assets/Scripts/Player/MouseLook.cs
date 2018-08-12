@@ -10,10 +10,15 @@ public class MouseLook : MonoBehaviour
         return mousePosition;
     }
 
+    public Vector2 GetDirection()
+    {
+        Vector2 direction = GetMousePosition() - new Vector2(transform.position.x, transform.position.y);
+        return direction;
+    }
+
     public float GetAngle(Transform transform)
     {
-        Vector2 direction = GetMousePosition() - new Vector2 (transform.position.x, transform.position.y);
-        float angle = Vector2.Angle(Vector2.right, direction);
+        float angle = Vector2.Angle(Vector2.right, GetDirection());
 
         return angle;
     }
