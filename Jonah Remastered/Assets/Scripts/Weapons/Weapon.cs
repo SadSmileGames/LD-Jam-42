@@ -4,22 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public enum FireMode { Semi, Automatic }
 
-    [Header("General")]
-    public Projectile projectile;
-
-    [Header("Firerate")]
-    public FireMode mode;
-    public float bulletsPerSeconds = 1f;
-
-    [Header("Projectile Options")]
-    public int damage = 10;
-    public float muzzleVelocity = 15f;
-
-    [Header("Reloading")]
-    public float reloadTime = 0.5f;
-    public int clipSize = 10;
+    public WeaponData weaponStats;
 
     [Header("Event Handlers")]
     public UnityEngine.Events.UnityEvent Shooting;
@@ -33,18 +19,18 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         firePoint = this.transform.GetChild(1).transform;
-        timeBetweenShots = 1 / bulletsPerSeconds;
-        bulletsInClip = clipSize;
+        timeBetweenShots = 1 / weaponStats.bulletsPerSeconds;
+        bulletsInClip = weaponStats.clipSize;
     }
 
     private void Update()
     {
-        if(mode == FireMode.Semi)
+        if(weaponStats.mode == WeaponData.FireMode.Semi)
         {
             if (Input.GetButtonDown("Fire1"))
                 Shoot();
         }
-        else if (mode == FireMode.Automatic)
+        else if (weaponStats.mode == WeaponData.FireMode.Automatic)
         {
             if (Input.GetButton("Fire1"))
                 Shoot();
@@ -61,9 +47,9 @@ public class Weapon : MonoBehaviour
             
 
         nextShotTime = Time.time + timeBetweenShots;
-        Projectile clone = Instantiate(projectile, firePoint.position, firePoint.rotation) as Projectile;
-        clone.SetSpeed(muzzleVelocity);
-        clone.SetDamage(damage);
+        Projectile clone = Instantiate(weaponStats.projectile, firePoint.position, firePoint.rotation) as Projectile;
+        clone.SetSpeed(weaponStats.muzzleVelocity);
+        clone.SetDamage(weaponStats.damage);
 
         Shooting.Invoke();
         bulletsInClip--;
@@ -72,8 +58,8 @@ public class Weapon : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-        yield return new WaitForSeconds(reloadTime);
-        bulletsInClip = clipSize;
+        yield return new WaitForSeconds(weaponStats.reloadTime);
+        bulletsInClip = weaponStats.clipSize;
         isReloading = false;
     }
 }

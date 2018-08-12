@@ -644,6 +644,12 @@ Prefab:
       propertyPath: clipSize
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: weaponStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 509d9e7a07b1864429e8a60695f163cc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42865879153903b46a4db6b1bf81b2ca, type: 2}
   m_IsPrefabAsset: 0
