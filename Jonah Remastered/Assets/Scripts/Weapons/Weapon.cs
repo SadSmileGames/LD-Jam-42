@@ -6,17 +6,22 @@ public class Weapon : MonoBehaviour
 {
     public enum FireMode { Semi, Automatic }
 
+    [Header("General")]
     public Projectile projectile;
 
+    [Header("Firerate")]
     public FireMode mode;
     public float bulletsPerSeconds = 1f;
 
+    [Header("Projectile Options")]
     public int damage = 10;
     public float muzzleVelocity = 15f;
 
+    [Header("Reloading")]
     public float reloadTime = 0.5f;
     public int clipSize = 10;
 
+    [Header("Event Handlers")]
     public UnityEngine.Events.UnityEvent Shooting;
 
     private Transform firePoint;

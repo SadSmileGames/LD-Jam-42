@@ -113,33 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &293408385 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1298802115113376, guid: 42865879153903b46a4db6b1bf81b2ca,
-    type: 2}
-  m_PrefabInternal: {fileID: 1302901475}
---- !u!114 &293408389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 293408385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c236715a65b3a488de6c7cb265b998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  mode: 0
-  bulletsPerSeconds: 1
-  damage: 10
-  reloadTime: 0.5
-  clipSize: 10
-  Shooting:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &393444112 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114318431961184544, guid: 42865879153903b46a4db6b1bf81b2ca,
@@ -524,6 +497,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4079945212103960, guid: 42865879153903b46a4db6b1bf81b2ca, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.017
@@ -555,6 +533,51 @@ Prefab:
     - target: {fileID: 4079945212103960, guid: 42865879153903b46a4db6b1bf81b2ca, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: bulletsPerSeconds
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: reloadTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 393444112}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Recoil
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114318431961184544, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: recoilAmount
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42865879153903b46a4db6b1bf81b2ca, type: 2}
