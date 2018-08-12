@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - Collision
-  - 
-  - 
-  - 
+  - Player
+  - Enemies
+  - Projectiles
   - 
   - 
   - 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public LayerMask collisionLayers;
+
     private float speed = 10f;
     private int damage = 10;
 
@@ -25,5 +27,17 @@ public class Projectile : MonoBehaviour
     private void Move()
     {
         transform.Translate(Vector2.right * Time.deltaTime * speed);
+    }
+
+    private void OnCollisionEnter2D(UnityEngine.Collision2D collision)
+    {
+        GameObject other = collision.gameObject;
+        if (collisionLayers == (collisionLayers | (1 << other.layer)))
+        {
+            if (other.GetComponent<IHealth>() != null)
+                other.GetComponent<IHealth>().Damage(damage);
+
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -287,11 +287,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1820653650}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &840514089
@@ -490,6 +490,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1061236059}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1300094127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1300094128}
+  m_Layer: 0
+  m_Name: Move Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1300094128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1300094127}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1820653650}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1302901475
 Prefab:
   m_ObjectHideFlags: 0
@@ -500,7 +529,7 @@ Prefab:
     - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
         type: 2}
       propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4079945212103960, guid: 42865879153903b46a4db6b1bf81b2ca, type: 2}
       propertyPath: m_LocalPosition.x
@@ -542,7 +571,7 @@ Prefab:
     - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
         type: 2}
       propertyPath: mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
         type: 2}
@@ -577,7 +606,43 @@ Prefab:
     - target: {fileID: 114318431961184544, guid: 42865879153903b46a4db6b1bf81b2ca,
         type: 2}
       propertyPath: recoilAmount
-      value: 0.1
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1820653651}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: AddShakeEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: ShakeTransformEventData, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: Shooting.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: c39f30f2cfb94de45b49c26d224d1491,
+        type: 2}
+    - target: {fileID: 114721802422777496, guid: 42865879153903b46a4db6b1bf81b2ca,
+        type: 2}
+      propertyPath: clipSize
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42865879153903b46a4db6b1bf81b2ca, type: 2}
@@ -713,6 +778,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1820653649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1820653650}
+  - component: {fileID: 1820653651}
+  m_Layer: 0
+  m_Name: Camera Shake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1820653650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1820653649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 519420032}
+  m_Father: {fileID: 1300094128}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1820653651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1820653649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c8d5195f9807e4e9d7d9d037f28630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1941497535
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +969,10 @@ Prefab:
         type: 2}
       propertyPath: dashTime
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426676532101922, guid: 2a21748f70941134eade6e311c80f2a1, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a21748f70941134eade6e311c80f2a1, type: 2}
