@@ -90,7 +90,7 @@ public class PlayerEffectsController : MonoBehaviour
 
     public void StartSpinning()
     {
-        StartCoroutine(Spin(graphics.transform, 1, controller.dashTime));
+        StartCoroutine(Spin(graphics.transform, 1, controller.dashTime * 2));
     }
 
     private IEnumerator Spin(Transform target, int times, float duration)
