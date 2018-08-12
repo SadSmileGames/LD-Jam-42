@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 114950465456244512}
   - component: {fileID: 114041977918879950}
   - component: {fileID: 114318431961184544}
+  - component: {fileID: 114721802422777496}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -124,6 +125,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphics: {fileID: 1240659028222420}
+--- !u!114 &114721802422777496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1298802115113376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c236715a65b3a488de6c7cb265b998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 114391676755063188, guid: 7ac177613bd4b9941a9acbc32f4c2431,
+    type: 2}
+  mode: 0
+  bulletsPerSeconds: 1
+  damage: 10
+  reloadTime: 0.5
+  clipSize: 10
+  Shooting:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114950465456244512
 MonoBehaviour:
   m_ObjectHideFlags: 1
