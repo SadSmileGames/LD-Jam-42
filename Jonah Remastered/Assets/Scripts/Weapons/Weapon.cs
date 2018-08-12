@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-
     public WeaponData weaponStats;
 
     [Header("Event Handlers")]
@@ -16,11 +15,15 @@ public class Weapon : MonoBehaviour
     private int bulletsInClip;
     private bool isReloading;
 
+    private AudioSource source;
+
     private void Start()
     {
         firePoint = this.transform.GetChild(1).transform;
         timeBetweenShots = 1 / weaponStats.bulletsPerSeconds;
         bulletsInClip = weaponStats.clipSize;
+
+        source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -52,6 +55,7 @@ public class Weapon : MonoBehaviour
         clone.SetDamage(weaponStats.damage);
 
         Shooting.Invoke();
+        PlayShootSound();
         bulletsInClip--;
     }
 
@@ -61,5 +65,11 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(weaponStats.reloadTime);
         bulletsInClip = weaponStats.clipSize;
         isReloading = false;
+    }
+
+    private void PlayShootSound()
+    {
+        source.pitch = Random.Range(0.75f, 1.1f);
+        source.PlayOneShot(weaponStats.shootSound);
     }
 }

@@ -19,3 +19,4 @@ MonoBehaviour:
   muzzleVelocity: 20
   reloadTime: 0.5
   clipSize: 32
+  shootSound: {fileID: 8300000, guid: 29f328544fd26e446be2911639be7502, type: 3}

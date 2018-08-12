@@ -21,4 +21,7 @@ public class WeaponData : ScriptableObject
     [Header("Reloading")]
     public float reloadTime = 0.5f;
     public int clipSize = 10;
+
+    [Header("Audio")]
+    public AudioClip shootSound;
 }
