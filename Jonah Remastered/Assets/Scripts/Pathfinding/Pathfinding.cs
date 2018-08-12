@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-
-    public Transform seeker, target;
-
-    Grid grid;
+    private Grid grid;
+    private PathRequestManager requestManager;
 
     private void Awake()
     {
         grid = GetComponent<Grid>();
+        requestManager = GetComponent<PathRequestManager>();
     }
 
-    private void Update()
+    public void StartFindPath(Vector3 startPos, Vector3 targetPos)
     {
-        FindPath(seeker.position, target.position);
+        StartCoroutine(FindPath(new Vector2(startPos.x, startPos.y), new Vector2(targetPos.x, targetPos.y)));
     }
 
-    private void FindPath(Vector3 startPos, Vector3 targetPos)
+    public void StartFindPath(Vector2 startPos, Vector2 targetPos)
     {
-        FindPath(new Vector2(startPos.x, startPos.y), new Vector2(targetPos.x, targetPos.y));
+        StartCoroutine(FindPath(new Vector2(startPos.x, startPos.y), new Vector2(targetPos.x, targetPos.y)));
     }
 
     // Implements A*
-    private void FindPath(Vector2 startPos, Vector2 targetPos)
+    IEnumerator FindPath(Vector2 startPos, Vector2 targetPos)
     {
+        Vector2[] waypoints = new Vector2[0];
+        bool success = fase;
+
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
@@ -54,8 +56,8 @@ public class Pathfinding : MonoBehaviour
             // We found our path
             if(currentNode == targetNode)
             {
-                CreatePath(startNode, targetNode);
-                return;
+                success = true;
+                break;
             }
 
             foreach (Node neighbour in grid.GetNeighbours(currentNode))
@@ -77,9 +79,16 @@ public class Pathfinding : MonoBehaviour
                 }
             }
         }
+
+        yield return null;
+
+        if(success)
+            waypoints = CreatePath(startNode, targetNode);
+
+        requestManager.FinishedProcessingPath(waypoints, success);
     }
 
-    private void CreatePath(Node start, Node end)
+    private Vector2[] CreatePath(Node start, Node end)
     {
         List<Node> path = new List<Node>();
         Node currentNode = end;
@@ -89,10 +98,29 @@ public class Pathfinding : MonoBehaviour
             path.Add(currentNode);
             currentNode = currentNode.parent;
         }
+        Vector2[] waypoints = SimplifyPath(path);
+        return waypoints;
+    }
 
-        path.Reverse();
+    private Vector2[] SimplifyPath(List<Node> path)
+    {
+        List<Vector2> waypoints = new List<Vector2>();
+        Vector2 directionOld = Vector2.zero;
 
-        grid.path = path;
+        for (int i = 1; i < path.Count; i++)
+        {
+            Vector2 directionNew = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);
+
+            if(directionNew != directionOld)
+            {
+                waypoints.Add(path[i].worldPosition);
+            }
+
+            directionOld = directionNew;
+        }
+
+        waypoints.Reverse();
+        return waypoints.ToArray();
     }
 
     private int GetDistance(Node a, Node b)
