@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Pathfinding : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class Pathfinding : MonoBehaviour
     IEnumerator FindPath(Vector2 startPos, Vector2 targetPos)
     {
         Vector2[] waypoints = new Vector2[0];
-        bool success = fase;
+        bool success = false;
 
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
@@ -99,6 +100,7 @@ public class Pathfinding : MonoBehaviour
             currentNode = currentNode.parent;
         }
         Vector2[] waypoints = SimplifyPath(path);
+        Array.Reverse(waypoints);
         return waypoints;
     }
 
@@ -118,8 +120,7 @@ public class Pathfinding : MonoBehaviour
 
             directionOld = directionNew;
         }
-
-        waypoints.Reverse();
+        
         return waypoints.ToArray();
     }
 

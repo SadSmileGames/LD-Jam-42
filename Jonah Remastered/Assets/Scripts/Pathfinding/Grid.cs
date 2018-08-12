@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
+    public Transform player;
+
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
@@ -14,7 +16,7 @@ public class Grid : MonoBehaviour
     private int gridSizeY;
 
 
-    private void Start()
+    private void Awake()
     {
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
@@ -27,11 +29,16 @@ public class Grid : MonoBehaviour
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
 
+        Node playerNode = NodeFromWorldPoint(TransformConversion.Convert2Vector2(player.position));
+
         if(grid != null)
         {
             foreach (Node node in grid)
             {
                 Gizmos.color = (node.walkable) ? Color.white : Color.red;
+                if (node == playerNode)
+                    Gizmos.color = Color.blue;
+                
                 Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
             }
         }
@@ -49,7 +56,7 @@ public class Grid : MonoBehaviour
             {
                 Vector2 worldPoint = bottomLeft + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.up * (y * nodeDiameter + nodeRadius);
                 RaycastHit2D[] hits;
-                hits = Physics2D.CircleCastAll(worldPoint, nodeRadius, Vector2.zero, 0, unwalkableMask);
+                hits = Physics2D.CircleCastAll(worldPoint, nodeRadius - 0.05f, Vector2.zero, 0, unwalkableMask);
 
                 foreach (RaycastHit2D hit in hits)
                 {
@@ -100,4 +107,13 @@ public class Grid : MonoBehaviour
 
         return grid[x, y];
     }
+
+    //public void UpdateGrid()
+    //{
+    //    foreach (Node node in grid)
+    //    {
+    //        RaycastHit2D[] hits;
+    //        hits = Physics2D.CircleCastAll(node.worldPosition, nodeRadius - 0.05f, Vector2.zero, 0, unwalkableMask);
+    //    }
+    //}
 }
