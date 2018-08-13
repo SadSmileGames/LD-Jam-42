@@ -5159,6 +5159,11 @@ Prefab:
       propertyPath: m_Size.y
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 114310366327923244, guid: 2a21748f70941134eade6e311c80f2a1,
+        type: 2}
+      propertyPath: dashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d7534db893d49e47bcc1647d7b02c8a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a21748f70941134eade6e311c80f2a1, type: 2}
   m_IsPrefabAsset: 0

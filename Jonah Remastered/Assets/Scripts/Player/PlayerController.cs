@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof (PlayerMotor))]
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip dashSound;
+
     public float speed = 5f;
     public float moveAccelerationTime = 0.1f;
 
@@ -26,9 +28,12 @@ public class PlayerController : MonoBehaviour
     private float velocityXSmoothing;
     private float velocityYSmoothing;
 
+    private AudioSource audioSource;
+
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
+        audioSource = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -75,6 +80,8 @@ public class PlayerController : MonoBehaviour
         velocity = input * dashVelocity;
         dashDuration = dashTime;
         dashCoolDownTimer = dashCoolDown;
+
+        audioSource.PlayOneShot(dashSound);
     }
 
     private void UpdateInputDirection()
