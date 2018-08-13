@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32cf197046d3a684ba0597259a95c1ba, type: 3}
+  m_Name: Spitter02
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 114391676755063188, guid: bf5b55129ea0b7146b1265c7cc108f11,
+    type: 2}
+  mode: 0
+  bulletsPerSeconds: 3
+  damage: 10
+  muzzleVelocity: 5
+  shootSound: {fileID: 8300000, guid: f3df96fa30627dd4b807233931f03488, type: 3}
