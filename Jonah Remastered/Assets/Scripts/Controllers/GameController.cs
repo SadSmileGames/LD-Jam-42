@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public delegate void OnNextWaveDelegate();
+    public static OnNextWaveDelegate OnNextWave;
+    public static OnNextWaveDelegate OnNextWaveBegin;
+
     public GameObject[] obstacleSets;
     public Grid grid;
 
@@ -48,7 +52,8 @@ public class GameController : MonoBehaviour
 
     public void NextWave()
     {
-        
+        if (OnNextWave != null)
+            OnNextWave();
 
         StartCoroutine(SpawnWave());
     }
@@ -56,16 +61,18 @@ public class GameController : MonoBehaviour
     IEnumerator SpawnWave()
     {
         yield return new WaitForSeconds(timeBetweenWaves);
-        
+        ChangeObstacles();
 
-        PrepForNextWave();
+        if (OnNextWaveBegin != null)
+            OnNextWaveBegin();
+
         wave = waves[Random.Range(0, waves.Length)];
 
         enemiesRemainingToSpawn = wave.numberOfEnemies;
         enemiesRemainingAlive = wave.numberOfEnemies;
     }
 
-    private void PrepForNextWave()
+    private void ChangeObstacles()
     {
         if(wave.obstacleSet != 0)
         {
