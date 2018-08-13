@@ -12,8 +12,6 @@ public class Weapon : MonoBehaviour
     private Transform firePoint;
     private float timeBetweenShots;
     private float nextShotTime;
-    private int bulletsInClip;
-    private bool isReloading;
 
     private AudioSource source;
 
@@ -21,33 +19,24 @@ public class Weapon : MonoBehaviour
     {
         firePoint = this.transform.GetChild(1).transform;
         timeBetweenShots = 1 / weaponStats.bulletsPerSeconds;
-        bulletsInClip = weaponStats.clipSize;
 
         source = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    public void SetFirepoint(Transform firePoint)
     {
-        if(weaponStats.mode == WeaponData.FireMode.Semi)
-        {
-            if (Input.GetButtonDown("Fire1"))
-                Shoot();
-        }
-        else if (weaponStats.mode == WeaponData.FireMode.Automatic)
-        {
-            if (Input.GetButton("Fire1"))
-                Shoot();
-        }
+        this.firePoint = firePoint;
     }
 
-    private void Shoot()
+    public void SetFirePointDirection (Vector2 direction)
     {
-        if (!(Time.time > nextShotTime) || isReloading)
-            return;
+        firePoint.right = direction;
+    }
 
-        if (bulletsInClip <= 0 && !isReloading)
-            StartCoroutine(Reload());
-            
+    public void Shoot()
+    {
+        if (!(Time.time > nextShotTime))
+            return;
 
         nextShotTime = Time.time + timeBetweenShots;
         Projectile clone = Instantiate(weaponStats.projectile, firePoint.position, firePoint.rotation) as Projectile;
@@ -56,15 +45,6 @@ public class Weapon : MonoBehaviour
 
         Shooting.Invoke();
         PlayShootSound();
-        bulletsInClip--;
-    }
-
-    IEnumerator Reload()
-    {
-        isReloading = true;
-        yield return new WaitForSeconds(weaponStats.reloadTime);
-        bulletsInClip = weaponStats.clipSize;
-        isReloading = false;
     }
 
     private void PlayShootSound()

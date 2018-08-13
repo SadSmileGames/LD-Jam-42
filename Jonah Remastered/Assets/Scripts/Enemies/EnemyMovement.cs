@@ -4,93 +4,11 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    //public Transform target;
-    //public float speed = 5f;
-    //public float stoppingDistance = 1f;
-
-    //private Vector2[] path;
-    //private int targetIndex;
-
-    //private bool isFollowing;
-    //private float distance;
-
-    ////private void Update()
-    ////{
-    //    distance = Vector3.Distance(transform.position, target.position);
-    //    //if (isFollowing == false && distance > stoppingDistance)
-    //    //{
-    //    //    PathRequestManager.RequestPath(TransformConversion.Convert2Vector2(transform.position),
-    //    //                               TransformConversion.Convert2Vector2(target.position),
-    //    //                               OnPathFound);
-    //    //}
-    //}
-
-    //public void RandomPathing()
-    //{
-    //    PathRequestManager.RequestRandomPath(TransformConversion.Convert2Vector2(transform.position));
-    //}
-
-    //public void OnPathFound(Vector2[] path, bool success)
-    //{
-    //    if(success)
-    //    {
-    //        this.path = path;
-    //        targetIndex = 0;
-
-    //        if (distance > stoppingDistance)
-    //        {
-    //            StopCoroutine("FollowPath");
-    //            StartCoroutine("FollowPath");
-    //        }
-    //    }
-    //}
-
-    //IEnumerator FollowPath()
-    //{
-    //    if (path.Length <= 0)
-    //    {
-    //        isFollowing = false;
-    //        yield break;
-    //    }
-
-    //    Vector2 currentWaypoint = path[0];
-    //    isFollowing = true;
-
-    //    while (isFollowing)
-    //    {
-    //        if(TransformConversion.Convert2Vector2(transform.position) == currentWaypoint)
-    //        {
-    //            targetIndex++;
-
-    //            if(targetIndex >= path.Length)
-    //            {
-    //                isFollowing = false;
-    //                yield break;
-    //            }
-    //            currentWaypoint = path[targetIndex];
-    //        }
-
-    //        Vector3 targetPos = TransformConversion.Convert2Vector3(currentWaypoint);
-
-    //        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-
-    //        if(distance < stoppingDistance)
-    //        {
-    //            isFollowing = false;
-    //            yield break;
-    //        }
-
-
-    //        yield return null;
-    //    }
-    //}
-
+    public delegate void OnTargetReachedDelegate(Transform actor);
+    public static OnTargetReachedDelegate OnTargetReachedEvent;
 
     public float speed;
     public float stoppingDistance = 3f;
-    public float retreatDistance;
-
-    public Transform player;
 
     private float distance;
     private Vector2 moveDirection;
@@ -101,24 +19,19 @@ public class EnemyMovement : MonoBehaviour
     private float velocityXSmoothing;
     private float velocityYSmoothing;
 
+
     private void Start()
     {
         coll = GetComponent<Collision2D>();
-        StartCoroutine(FindPlayer());
     }
 
-    private void Update()
+    public void Move(Transform target)
     {
-        if (player == null)
+        if (target == null)
             return;
 
-        CalculateDistance();
-        Move(); 
-    }
-
-    private void Move()
-    {
-        UpdateMoveDirection();
+        CalculateDistance(transform.position, target.position);
+        UpdateMoveDirection(target);
         velocity = moveDirection * speed * Time.deltaTime;
 
         if (distance > stoppingDistance)
@@ -128,28 +41,16 @@ public class EnemyMovement : MonoBehaviour
 
             transform.Translate(velocity);
         }
-        else if (distance < retreatDistance)
-        {
-            coll.CheckHorizontalCollisions(ref velocity);
-            coll.CheckVerticalCollisions(ref velocity);
-
-            transform.Translate(velocity);
-        }
-    }
-
-    private IEnumerator FindPlayer()
-    {
-        if (GameObject.FindGameObjectWithTag("Player").transform != null)
-            player = GameObject.FindGameObjectWithTag("Player").transform;
         else
-            FindPlayer();
-
-        yield return null;
+        {
+            if (OnTargetReachedEvent != null)
+                OnTargetReachedEvent(this.transform);
+        } 
     }
 
-    private void CalculateDistance()
+    private void CalculateDistance(Vector2 from, Vector2 to)
     {
-        distance = Vector2.Distance(transform.position, player.position);
+        distance = Vector2.Distance(from, to);
     }
 
     private Vector2 CalculateDirection (Vector2 from, Vector2 to)
@@ -160,13 +61,13 @@ public class EnemyMovement : MonoBehaviour
         return dir.normalized;
     }
 
-    private void UpdateMoveDirection ()
+    private void UpdateMoveDirection(Transform target)
     {
-        moveDirection = CalculateDirection(transform.position, player.position);
+        moveDirection = CalculateDirection(transform.position, target.position);
 
-        if(coll.collisions.other != null && coll.collisions.other.tag == "Enemy")
+        if (coll.collisions.other != null && coll.collisions.other.tag == "Enemy")
         {
-            if(moveDirection.x > moveDirection.y)
+            if (moveDirection.x > moveDirection.y)
             {
                 moveDirection.y = moveDirection.y * -1f;
             }
