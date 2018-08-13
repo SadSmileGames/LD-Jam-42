@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IHealth
 {
-    public int health = 100;
+    public delegate void OnPlayerDamageDelegate();
 
-    [HideInInspector]
-    public int currentHealth;
+    public static OnPlayerDamageDelegate OnPlayerDeath;
+    public static OnPlayerDamageDelegate OnPlayerDamage;
+
+    public int health = 5;
+    
+    private int currentHealth;
 
     void Start ()
     {
@@ -16,14 +20,22 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public void Damage(int amount)
     {
-        currentHealth -= amount;
+        currentHealth--;
 
-        if (currentHealth <= 0)
+        if (OnPlayerDamage != null)
+            OnPlayerDamage();
+
+        if(currentHealth <= 0)
+        {
+            if (OnPlayerDeath != null)
+                OnPlayerDeath();
+
             Die();
+        }
     }
 
     private void Die()
     {
-        Debug.Log("U r already daed!");
+        this.gameObject.SetActive(false);
     }
 }

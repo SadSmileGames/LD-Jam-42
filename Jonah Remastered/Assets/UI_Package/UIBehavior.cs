@@ -12,19 +12,25 @@ public class UIBehavior : MonoBehaviour {
     private Text killCountText;
     private Text scoreText;
     private int killCount;
-    private BlackFader fader;
-    // Use this for initialization
+    //private BlackFader fader;
+
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDamage += Damaged;
+        EnemyHealth.OnDeath += OnKill;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDamage -= Damaged;
+        EnemyHealth.OnDeath -= OnKill;
+    }
+
     void Start()
     { 
         killCountText = textBoxes[0].GetComponent<Text>();
-        fader = blackBox.GetComponent<BlackFader>();
+        //fader = blackBox.GetComponent<BlackFader>();
         scoreText = textBoxes[3].GetComponent<Text>();
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-
     }
 
     private void disableText()
@@ -35,13 +41,13 @@ public class UIBehavior : MonoBehaviour {
         }
     }
 
-    public void onKill(int kills)
+    public void OnKill()
     {
-        killCount = kills;
+        killCount++;
         killCountText.text = ("Kills: " + killCount);
     }
 
-    public void damaged()
+    public void Damaged()
     {
         if (health[4].activeSelf)
         {
@@ -68,24 +74,24 @@ public class UIBehavior : MonoBehaviour {
     public void gameOver()
     {
         disableText();
-        fader.fadeIn();
+        //fader.fadeIn();
         scoreText.text = ("Score: " + killCount);
         textBoxes[3].SetActive(true);
         textBoxes[2].SetActive(true);
     }
 
-    public void resetGame()
-    {
-        disableText();
-        yield return new WaitForSeconds(1);
-        textBoxes[1].SetActive(true);
-    }
+    //public void resetGame()
+    //{
+    //    disableText();
+    //    yield return new WaitForSeconds(1);
+    //    textBoxes[1].SetActive(true);
+    //}
 
     public void startGame()
     {
         disableText();
         textBoxes[0].SetActive(true);
-        fader.fadeOut();
+        //fader.fadeOut();
     }
 
 }

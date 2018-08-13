@@ -18,6 +18,8 @@ public class EnemyBehaviour : MonoBehaviour
     private Transform player;
     private Transform targetLocation;
 
+    private bool isPlayerDead;
+
     public enum State
     {
         Idle,
@@ -30,17 +32,22 @@ public class EnemyBehaviour : MonoBehaviour
     private void OnEnable()
     {
         EnemyMovement.OnTargetReachedEvent += ReachedTarget;
+        PlayerHealth.OnPlayerDeath += SetIdlePermanently;
     }
 
     private void OnDisable()
     {
         EnemyMovement.OnTargetReachedEvent -= ReachedTarget;
+        PlayerHealth.OnPlayerDeath -= SetIdlePermanently;
     }
 
     private void Start()
     {
         weapon = GetComponent<Weapon>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        if(GameObject.FindGameObjectWithTag("Player") != null)
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+
         movement = GetComponent<EnemyMovement>();
         state = State.Idle;
         idleTimeRemaining = 2f;
@@ -122,11 +129,22 @@ public class EnemyBehaviour : MonoBehaviour
     {
         int newState = Random.Range(1, 4);
 
+        if(isPlayerDead)
+        {
+            state = State.Idle;
+            return;
+        }
+
         if (newState == 1)
             state = State.Idle;
         else if (newState == 2)
             state = State.Chasing;
         else if (newState == 3)
             state = State.Attacking;
+    }
+
+    public void SetIdlePermanently()
+    {
+        isPlayerDead = true;
     }
 }
