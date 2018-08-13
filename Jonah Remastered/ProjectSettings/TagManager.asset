@@ -45,6 +45,9 @@ TagManager:
   - name: Background
     uniqueID: 3903486587
     locked: 0
+  - name: Corpses
+    uniqueID: 2027808195
+    locked: 0
   - name: Obstacle
     uniqueID: 635985753
     locked: 0

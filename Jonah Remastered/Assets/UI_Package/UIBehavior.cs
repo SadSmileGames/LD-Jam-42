@@ -31,7 +31,6 @@ public class UIBehavior : MonoBehaviour {
     void Start()
     { 
         killCountText = textBoxes[0].GetComponent<Text>();
-        //fader = blackBox.GetComponent<BlackFader>();
         scoreText = textBoxes[3].GetComponent<Text>();
     }
 
