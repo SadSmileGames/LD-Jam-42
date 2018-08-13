@@ -5,7 +5,7 @@ using System;
 
 public class Pathfinding : MonoBehaviour
 {
-    private Grid grid;
+    public Grid grid;
     private PathRequestManager requestManager;
 
     private void Awake()
@@ -86,7 +86,7 @@ public class Pathfinding : MonoBehaviour
         if(success)
             waypoints = CreatePath(startNode, targetNode);
 
-        requestManager.FinishedProcessingPath(waypoints, success);
+        //requestManager.FinishedProcessingPath(waypoints, success);
     }
 
     private Vector2[] CreatePath(Node start, Node end)

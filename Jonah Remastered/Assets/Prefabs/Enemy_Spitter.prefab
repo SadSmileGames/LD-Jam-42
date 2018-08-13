@@ -20,7 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4387310395087734}
   - component: {fileID: 61727353538229464}
-  m_Layer: 0
+  - component: {fileID: 114160173652855464}
+  - component: {fileID: 114921095314143158}
+  - component: {fileID: 114554325461071164}
+  m_Layer: 10
   m_Name: Enemy_Spitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +55,7 @@ GameObject:
   - component: {fileID: 4544480539205714}
   - component: {fileID: 212217818652002334}
   m_Layer: 0
-  m_Name: Enemy_Attack_Front_02
+  m_Name: Enemy Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1042091777411488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.11, y: 3.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4111530047969962}
@@ -122,8 +125,49 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.64, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114160173652855464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1042091777411488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5f8b64b5b0fcf4aa41b7260d6568ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 5
+  stoppingDistance: 2
+--- !u!114 &114554325461071164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1042091777411488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b5a178112a9d14bbc7212a41defcc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphics: {fileID: 1943094302805166}
+--- !u!114 &114921095314143158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1042091777411488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81b4246a9e847648923b63695297449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  deathEffect: {fileID: 1943395375951550, guid: 06b2cce06ddf83c4faf33e055fd23f70,
+    type: 2}
+  currentHealth: 0
 --- !u!212 &212217818652002334
 SpriteRenderer:
   m_ObjectHideFlags: 1

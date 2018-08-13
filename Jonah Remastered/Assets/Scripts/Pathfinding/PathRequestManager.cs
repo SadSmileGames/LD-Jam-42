@@ -26,6 +26,11 @@ public class PathRequestManager : MonoBehaviour
         instance.TryProcessNext();
     }
 
+    public static void RequestRandomPath(Vector2 start)
+    {
+        instance.pathfinding.StartFindPath(start, instance.pathfinding.grid.GetRandomNodePosition());
+    }
+
     private void TryProcessNext()
     {
         if(!isProcessingPath && pathRequestQueue.Count > 0)

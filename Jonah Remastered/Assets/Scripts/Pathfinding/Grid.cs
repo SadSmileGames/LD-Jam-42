@@ -108,12 +108,16 @@ public class Grid : MonoBehaviour
         return grid[x, y];
     }
 
-    //public void UpdateGrid()
-    //{
-    //    foreach (Node node in grid)
-    //    {
-    //        RaycastHit2D[] hits;
-    //        hits = Physics2D.CircleCastAll(node.worldPosition, nodeRadius - 0.05f, Vector2.zero, 0, unwalkableMask);
-    //    }
-    //}
+    public Vector2 GetRandomNodePosition()
+    {
+        int randomX = Random.Range(0, gridSizeX - 1);
+        int randomY = Random.Range(0, gridSizeY - 1);
+
+        if (grid[randomX, randomY].walkable)
+            return grid[randomX, randomY].worldPosition;
+        else
+            GetRandomNodePosition();
+
+        return grid[randomX, randomY].worldPosition;
+    }
 }
