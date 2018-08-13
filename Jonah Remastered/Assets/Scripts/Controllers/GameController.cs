@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
     private float nextSpawnTime;
     private float timeBetweenWavesRemaining;
 
+    private Transform player;
+
     private void OnEnable()
     {
         EnemyHealth.OnDeath += UpdateScore;
@@ -63,6 +65,8 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenWaves);
         ChangeObstacles();
 
+        player.position = grid.GetRandomNodePosition();
+
         if (OnNextWaveBegin != null)
             OnNextWaveBegin();
 
@@ -87,6 +91,8 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
         NextWave();
     }
 
