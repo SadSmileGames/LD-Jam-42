@@ -43,6 +43,8 @@ public class EnemyBehaviour : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         movement = GetComponent<EnemyMovement>();
         state = State.Idle;
+        idleTimeRemaining = 2f;
+
 
         chaseTimeRemaining = Random.Range(chaseTime.x, chaseTime.y);
     }

@@ -45,11 +45,11 @@ TagManager:
   - name: Background
     uniqueID: 3903486587
     locked: 0
-  - name: Obstacle
-    uniqueID: 635985753
-    locked: 0
   - name: Characters
     uniqueID: 4202119351
+    locked: 0
+  - name: Obstacle
+    uniqueID: 635985753
     locked: 0
   - name: Weapons
     uniqueID: 3847717767

@@ -15,8 +15,6 @@ MonoBehaviour:
     type: 2}
   mode: 1
   bulletsPerSeconds: 7.5
-  damage: 10
+  damage: 20
   muzzleVelocity: 30
-  reloadTime: 0.5
-  clipSize: 1000
   shootSound: {fileID: 8300000, guid: 0fe00f0ce61595b43a54059b2c128303, type: 3}

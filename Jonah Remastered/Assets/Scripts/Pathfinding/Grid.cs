@@ -49,18 +49,32 @@ public class Grid : MonoBehaviour
             for (int y = 0; y < gridSizeY; y++)
             {
                 Vector2 worldPoint = bottomLeft + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.up * (y * nodeDiameter + nodeRadius);
-                RaycastHit2D[] hits;
-                hits = Physics2D.CircleCastAll(worldPoint, nodeRadius, Vector2.zero, 0, unwalkableMask);
 
-                foreach (RaycastHit2D hit in hits)
+                Collider2D[] hits;
+                hits = Physics2D.OverlapBoxAll(worldPoint, new Vector2(nodeRadius, nodeRadius), 0f, unwalkableMask);
+
+                foreach (Collider2D hit in hits)
                 {
-                    Debug.Log(hit.collider.name);
+                    Debug.Log(hit.name);
                 }
 
                 bool walkable = (hits.Length == 0);
 
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
             }
+        }
+    }
+
+    public void UpdateGrid ()
+    {
+        foreach (Node node in grid)
+        {
+            Collider2D[] hits;
+            hits = Physics2D.OverlapBoxAll(grid[node.gridX, node.gridY].worldPosition, new Vector2(nodeRadius, nodeRadius), 0f, unwalkableMask);
+
+            bool walkable = (hits.Length == 0);
+
+            grid[node.gridX, node.gridY].walkable = walkable;
         }
     }
 
@@ -104,13 +118,16 @@ public class Grid : MonoBehaviour
 
     public Vector2 GetRandomNodePosition()
     {
+        UpdateGrid();
+
         int randomX = Random.Range(0, gridSizeX - 1);
         int randomY = Random.Range(0, gridSizeY - 1);
 
-        if (grid[randomX, randomY].walkable)
-            return grid[randomX, randomY].worldPosition;
-        else
-            GetRandomNodePosition();
+        while(!grid[randomX, randomY].walkable)
+        {
+            randomX = Random.Range(0, gridSizeX - 1);
+            randomY = Random.Range(0, gridSizeY - 1);
+        }
 
         return grid[randomX, randomY].worldPosition;
     }
