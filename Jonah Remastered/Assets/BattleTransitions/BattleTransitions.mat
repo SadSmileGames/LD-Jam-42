@@ -33,10 +33,14 @@ Material:
     m_Floats:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - _Cutoff: -0.010227911
 =======
     - _Cutoff: 1.0145986
 >>>>>>> origin/polishing-julian
+=======
+    - _Cutoff: -0.010250283
+>>>>>>> parent of 618445c... Enemies are kinda animating now lol
 =======
     - _Cutoff: -0.010250283
 >>>>>>> parent of 618445c... Enemies are kinda animating now lol
