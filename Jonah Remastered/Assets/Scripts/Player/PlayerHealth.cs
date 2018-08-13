@@ -8,19 +8,23 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public static OnPlayerDamageDelegate OnPlayerDeath;
     public static OnPlayerDamageDelegate OnPlayerDamage;
+    public AudioClip hitSound;
 
     public int health = 5;
-    
+
+    private AudioSource audioSource;
     private int currentHealth;
 
     void Start ()
     {
         currentHealth = health;
+        audioSource = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
 	}
 
     public void Damage(int amount)
     {
         currentHealth--;
+        audioSource.PlayOneShot(hitSound);
 
         if (OnPlayerDamage != null)
             OnPlayerDamage();
