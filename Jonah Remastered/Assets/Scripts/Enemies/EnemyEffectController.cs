@@ -12,6 +12,4 @@ public class EnemyEffectController : MonoBehaviour
     {
         animator = graphics.GetComponent<Animator>();
     }
-
-
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public GameObject graphics;
-
     public float attackDuratrion = 1f;
     public Vector2 chaseTime = new Vector2(1, 2);
     public Vector2 idleTime = new Vector2(0.5f, 1);
@@ -21,7 +19,6 @@ public class EnemyBehaviour : MonoBehaviour
     private Transform targetLocation;
 
     private bool isPlayerDead;
-    private Animator animator;
 
     public enum State
     {
@@ -47,7 +44,6 @@ public class EnemyBehaviour : MonoBehaviour
     private void Start()
     {
         weapon = GetComponent<Weapon>();
-        animator = graphics.GetComponent<Animator>();
 
         if(GameObject.FindGameObjectWithTag("Player") != null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -123,35 +119,8 @@ public class EnemyBehaviour : MonoBehaviour
             attackTimeRemaining = attackDuratrion;
         }
 
-        Vector2 dir = player.position - transform.position;
-
-        weapon.SetFirePointDirection(dir);
+        weapon.SetFirePointDirection(player.position - transform.position);
         weapon.Shoot();
-
-        animator.SetBool("facingRight", false);
-        animator.SetBool("facingLeft", false);
-        animator.SetBool("facingUp", false);
-        animator.SetBool("facingDown", false);
-
-        if (dir.x > dir.y)
-        {
-            if (dir.x >= 0)
-                animator.SetBool("facingRight", true);
-            else
-                animator.SetBool("facingLeft", true);
-        }
-        else
-        {
-            if (dir.y >= 0)
-                animator.SetBool("facingUp", true);
-            else
-                animator.SetBool("facingDown", true);
-        }
-
-        animator.SetTrigger("Shooting");
-
-
-
         attackTimeRemaining -= Time.deltaTime;
         
     }
