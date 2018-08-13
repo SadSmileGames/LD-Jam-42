@@ -17,4 +17,4 @@ MonoBehaviour:
   bulletsPerSeconds: 1
   damage: 10
   muzzleVelocity: 3.5
-  shootSound: {fileID: 8300000, guid: 29f328544fd26e446be2911639be7502, type: 3}
+  shootSound: {fileID: 8300000, guid: f3df96fa30627dd4b807233931f03488, type: 3}
