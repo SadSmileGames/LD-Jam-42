@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff3883fa2c1fe4db4935ce112ba7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphics: {fileID: 1943094302805166}
   attackDuratrion: 1
   chaseTime: {x: 1, y: 2}
   idleTime: {x: 0.5, y: 1}
@@ -420,7 +421,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -92847945
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: 8bbd9253067ec8a48904459c718bfbf8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
