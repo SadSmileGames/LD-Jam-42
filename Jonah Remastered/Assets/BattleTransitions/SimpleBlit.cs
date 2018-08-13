@@ -10,12 +10,14 @@ public class SimpleBlit : MonoBehaviour
     {
         GameController.OnNextWave += StartFade;
         GameController.OnNextWaveBegin += StartFadeOut;
+        PlayerHealth.OnPlayerDeath += StartFade;
     }
 
     private void OnDisable()
     {
         GameController.OnNextWave -= StartFade;
         GameController.OnNextWaveBegin -= StartFadeOut;
+        PlayerHealth.OnPlayerDeath -= StartFade;
     }
 
     void OnRenderImage(RenderTexture src, RenderTexture dst)

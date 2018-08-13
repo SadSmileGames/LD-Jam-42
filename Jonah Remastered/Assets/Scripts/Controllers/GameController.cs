@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -27,16 +28,20 @@ public class GameController : MonoBehaviour
 
     private Transform player;
 
+    private bool isGameOver;
+
     private void OnEnable()
     {
         EnemyHealth.OnDeath += UpdateScore;
         EnemyHealth.OnDeath += UpdateRemainingEnemies;
+        PlayerHealth.OnPlayerDeath += SetGameOver;
     }
 
     private void OnDisable()
     {
         EnemyHealth.OnDeath -= UpdateScore;
         EnemyHealth.OnDeath -= UpdateRemainingEnemies;
+        PlayerHealth.OnPlayerDeath += SetGameOver;
     }
 
     public void UpdateRemainingEnemies()
@@ -98,6 +103,12 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetButtonDown("Jump") && isGameOver)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+
         if(enemiesRemainingToSpawn > 0 && Time.time > nextSpawnTime)
         {
             enemiesRemainingToSpawn--;
@@ -116,6 +127,11 @@ public class GameController : MonoBehaviour
 
         [Range(1, 3)]
         public int obstacleSet;
+    }
+
+    public void SetGameOver()
+    {
+        isGameOver = true;
     }
 
 }

@@ -17,12 +17,14 @@ public class UIBehavior : MonoBehaviour {
     private void OnEnable()
     {
         PlayerHealth.OnPlayerDamage += Damaged;
+        PlayerHealth.OnPlayerDeath += GameOver;
         EnemyHealth.OnDeath += OnKill;
     }
 
     private void OnDisable()
     {
         PlayerHealth.OnPlayerDamage -= Damaged;
+        PlayerHealth.OnPlayerDeath -= GameOver;
         EnemyHealth.OnDeath -= OnKill;
     }
 
@@ -45,6 +47,7 @@ public class UIBehavior : MonoBehaviour {
     {
         killCount++;
         killCountText.text = ("Kills: " + killCount);
+        scoreText.text = ("KILLS: " + killCount);
     }
 
     public void Damaged()
@@ -71,27 +74,19 @@ public class UIBehavior : MonoBehaviour {
         }
     }
 
-    public void gameOver()
+    public void GameOver()
     {
         disableText();
-        //fader.fadeIn();
-        scoreText.text = ("Score: " + killCount);
+        textBoxes[0].SetActive(false);
         textBoxes[3].SetActive(true);
         textBoxes[2].SetActive(true);
+        textBoxes[4].SetActive(true);
     }
-
-    //public void resetGame()
-    //{
-    //    disableText();
-    //    yield return new WaitForSeconds(1);
-    //    textBoxes[1].SetActive(true);
-    //}
 
     public void startGame()
     {
         disableText();
         textBoxes[0].SetActive(true);
-        //fader.fadeOut();
     }
 
 }
