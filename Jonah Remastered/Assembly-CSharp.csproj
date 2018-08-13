@@ -61,7 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BlackFader.cs" />
     <Compile Include="Assets\Scripts\Camera\ShakeTransform.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyEffectController.cs" />
@@ -82,13 +81,14 @@
     <Compile Include="Assets\Scripts\Player\RaycastOrigins.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\ShakeTransformEventData.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\WeaponData.cs" />
-    <Compile Include="Assets\Scripts\UIBehavior.cs" />
     <Compile Include="Assets\Scripts\Utility\DestroyAfterTimer.cs" />
     <Compile Include="Assets\Scripts\Utility\TransformConversion.cs" />
     <Compile Include="Assets\Scripts\Weapons\Projectile.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponEffectsManager.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponMovement.cs" />
+    <Compile Include="Assets\UI_Package\BlackFader.cs" />
+    <Compile Include="Assets\UI_Package\UIBehavior.cs" />
     <None Include="Assets\Art\Fonts\pixel-millennium\Pixel Millennium license.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/GitHub/LD-Jam-42/Jonah Remastered/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
