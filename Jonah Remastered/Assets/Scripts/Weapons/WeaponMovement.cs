@@ -5,15 +5,14 @@ using UnityEngine;
 public class WeaponMovement : MonoBehaviour
 {
     public float smoothAmount = 25f;
+    public Vector2 offset;
 
-    private Vector2 offset;
     private Transform player;
     private MouseLook mouseLook;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        offset = transform.position;
         mouseLook = GetComponent<MouseLook>();
     }
 

@@ -12,6 +12,8 @@ public class Collision2D : MonoBehaviour
     public float distanceBentweenRays = 0.1f;
     public LayerMask collisionMask;
 
+    public CollisionInfo collisions;
+
     private BoxCollider2D coll;
     private RaycastOrigins raycastOrigins;
 
@@ -48,9 +50,10 @@ public class Collision2D : MonoBehaviour
             {
                 velocity.x = (hit2D.distance - skinWidth) * directionX;
                 rayLength = hit2D.distance;
-            }
 
-            
+                collisions.state = collisions.state = (directionX == -1) ? CollisionInfo.CollisionState.left : CollisionInfo.CollisionState.right;
+                collisions.other = hit2D.collider.gameObject;
+            }     
         }
     }
 
@@ -73,6 +76,9 @@ public class Collision2D : MonoBehaviour
             {
                 velocity.y = (hit2D.distance - skinWidth) * directionY;
                 rayLength = hit2D.distance;
+
+                collisions.state = (directionY == -1) ? CollisionInfo.CollisionState.below : CollisionInfo.CollisionState.above;
+                collisions.other = hit2D.collider.gameObject;
             }
         }
     }
@@ -108,5 +114,22 @@ public class Collision2D : MonoBehaviour
         bounds.Expand(skinWidth * -2);
 
         return bounds;
+    }
+
+    [System.Serializable]
+    public struct CollisionInfo
+    {
+        public enum CollisionState { none, above, below, left, right}
+        public CollisionState state;
+
+        public GameObject other;
+
+        public Vector3 velocityOld;
+
+        public void Reset()
+        {
+            other = null;
+            state = CollisionState.none;
+        }
     }
 }

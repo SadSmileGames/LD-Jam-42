@@ -9,14 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32cf197046d3a684ba0597259a95c1ba, type: 3}
-  m_Name: Machine Gun
+  m_Name: Spitter
   m_EditorClassIdentifier: 
-  projectile: {fileID: 114391676755063188, guid: 7ac177613bd4b9941a9acbc32f4c2431,
+  projectile: {fileID: 114391676755063188, guid: bf5b55129ea0b7146b1265c7cc108f11,
     type: 2}
-  mode: 1
-  bulletsPerSeconds: 7.5
+  mode: 0
+  bulletsPerSeconds: 1
   damage: 10
-  muzzleVelocity: 30
-  reloadTime: 0.5
-  clipSize: 1000
-  shootSound: {fileID: 8300000, guid: 0fe00f0ce61595b43a54059b2c128303, type: 3}
+  muzzleVelocity: 3.5
+  shootSound: {fileID: 8300000, guid: 29f328544fd26e446be2911639be7502, type: 3}

@@ -18,10 +18,6 @@ public class WeaponData : ScriptableObject
     public int damage = 10;
     public float muzzleVelocity = 15f;
 
-    [Header("Reloading")]
-    public float reloadTime = 0.5f;
-    public int clipSize = 10;
-
     [Header("Audio")]
     public AudioClip shootSound;
 }
