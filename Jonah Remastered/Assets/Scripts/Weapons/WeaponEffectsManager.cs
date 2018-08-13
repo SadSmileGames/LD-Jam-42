@@ -38,7 +38,7 @@ public class WeaponEffectsManager : MonoBehaviour
         {
             case 1:
                 ResetSpriteRenderer();
-                spriteRenderer.sortingOrder = -1;
+                spriteRenderer.sortingLayerName = "Obstacle";
                 break;
             case 2:
                 ResetSpriteRenderer();
@@ -71,5 +71,6 @@ public class WeaponEffectsManager : MonoBehaviour
         spriteRenderer.flipX = false;
         spriteRenderer.flipY = false;
         spriteRenderer.sortingOrder = 0;
+        spriteRenderer.sortingLayerName = "Weapons";
     }
 }

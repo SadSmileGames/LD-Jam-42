@@ -50,7 +50,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         movement = GetComponent<EnemyMovement>();
         state = State.Idle;
-        idleTimeRemaining = 2f;
+        idleTimeRemaining = 1.25f;
 
 
         chaseTimeRemaining = Random.Range(chaseTime.x, chaseTime.y);
